@@ -40,22 +40,6 @@ class AuCodeLibrary
         return init
     }
 
-    private fun TesseractTextRecognizing(croppedBitmap : Bitmap) : String
-    {
-        try
-        {
-            _tesseractApi.setImage(croppedBitmap);
-
-            return  _tesseractApi.utF8Text
-        }
-        catch (e : Exception)
-        {
-            Log.d("Exception", e.message)
-        }
-
-        return "";
-    }
-
     fun RecognizeText(bitmap : Bitmap, textColorHues : ArrayList<HueRange>) : String
     {
         if (bitmap.width == 0 || bitmap.height == 0)
@@ -121,5 +105,21 @@ class AuCodeLibrary
         val result : String = TesseractTextRecognizing(bitmap);
 
         return result
+    }
+
+    private fun TesseractTextRecognizing(croppedBitmap : Bitmap) : String
+    {
+        try
+        {
+            _tesseractApi.setImage(croppedBitmap);
+
+            return  _tesseractApi.utF8Text
+        }
+        catch (e : Exception)
+        {
+            Log.d("Exception", e.message)
+        }
+
+        return "";
     }
 }
